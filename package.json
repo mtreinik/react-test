@@ -1,0 +1,38 @@
+{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "Testing React with TypeScript",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "@types/react": "16.4.13",
+    "@types/react-dom": "16.0.7",
+    "react": "16.5.0",
+    "react-dom": "16.5.0"
+  },
+  "devDependencies": {
+    "source-map-loader": "0.2.4",
+    "ts-loader": "5.0.0",
+    "typescript": "3.0.3",
+    "webpack": "4.17.2",
+    "webpack-cli": "3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtreinik/react-test.git"
+  },
+  "keywords": [
+    "react",
+    "TypeScript",
+    "WebSocket"
+  ],
+  "author": "Mikko Reinikainen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mtreinik/react-test/issues"
+  },
+  "homepage": "https://github.com/mtreinik/react-test#readme"
+}

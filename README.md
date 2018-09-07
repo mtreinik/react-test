@@ -1,6 +1,12 @@
 # React test
-Testing web app development techniques:
+Example application that uses the following web app development techniques:
 - React
 - TypeScript
-- WebSocket
-- Heroku
+
+Installing
+---
+npm Install
+
+Building
+---
+npm run build

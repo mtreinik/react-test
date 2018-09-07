@@ -1,0 +1,38 @@
+body {
+  font-family: sans-serif;
+}
+.app {
+}
+.drawing-area {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  border: 2px solid lightgray;
+}
+.color-palette {
+  display: flex;
+  flex-grow: 1;
+}
+.color-selector {
+  flex-grow: 1;
+  border: 5px solid lightgray;
+}
+.pixels {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+}
+.pixel-row {
+  display: flex;
+  flex-grow: 1;
+}
+.pixel {
+  flex-grow: 1;
+  border: 2px solid lightgray;
+}
+.footer {
+  margin-top: 1em;
+  font-size: small;
+  text-align: center;
+}
