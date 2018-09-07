@@ -1,2 +1,6 @@
-# react-test
-React test
+# React test
+Testing web app development techniques:
+- React
+- TypeScript
+- WebSocket
+- Heroku
