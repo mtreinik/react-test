@@ -3,7 +3,6 @@ import * as React from 'react';
 interface Props {
   x: number,
   y: number,
-  key: string,
   mouseDown: boolean,
   initialColor: string,
   initialUnsaved: boolean,
