@@ -9,7 +9,7 @@ export interface PixelStatus {
 }
 
 interface Props {
-  onChange: (pixels: PixelStatus[][]) => void,
+  onChange: (pixels:PixelStatus[][]) => void,
   width: number,
   height: number,
   penColor: string,
