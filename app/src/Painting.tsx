@@ -3,19 +3,20 @@ import Pixel from './Pixel';
 import { EVENT_TYPES } from './Pixel';
 import { COLORS } from './ToolPalette';
 
-interface PixelStatus {
+export interface PixelStatus {
   color: string,
   unsaved: boolean
 }
 
 interface Props {
+  onChange: (pixels: PixelStatus[][]) => void,
   width: number,
   height: number,
-  penColor: string
+  penColor: string,
+  pixels: PixelStatus[][]
 }
 
 interface State {
-  pixels: PixelStatus[][],
   mouseDown: boolean
 }
 
@@ -33,19 +34,8 @@ export default class Painting extends React.Component<Props, State> {
   constructor(props:Props) {
     super(props);
     this.state = {
-      pixels: [],
       mouseDown: false
     };
-    for (let y = 0; y < this.props.height; y++) {
-      let pixelRow: PixelStatus[] = [];
-      for (let x = 0; x < this.props.width; x++) {
-        pixelRow[x] = {
-          color: COLORS['white'],
-          unsaved: false
-        };
-      }
-      this.state.pixels[y] = pixelRow;
-    }
   }
 
   setPixel = (pixels: PixelStatus[][], x: number, y: number, color: string) => {
@@ -54,30 +44,26 @@ export default class Painting extends React.Component<Props, State> {
       color: color,
       unsaved: true
     }
-    return newPixels;
+    this.props.onChange(newPixels);
   }
 
   handlePixelChange = (x:number, y:number, eventType:EVENT_TYPES) => {
     switch (eventType) {
       case EVENT_TYPES.MOUSE_DOWN: {
-        console.log('mouse down');
-        this.setState((state, props) => ({
-          pixels: this.setPixel(state.pixels, x, y, props.penColor),
-          mouseDown: true
-        }));
+//        console.log('mouse down');
+        this.setState({ mouseDown: true });
+        this.setPixel(this.props.pixels, x, y, this.props.penColor)
         break;
       }
       case EVENT_TYPES.MOUSE_UP: {
-        console.log('mouse up');
+//        console.log('mouse up');
         this.setState({mouseDown: false});
         break;
       }
       case EVENT_TYPES.TOUCH_START: {
-        console.log('touch start');
+//        console.log('touch start');
         if (this.state.mouseDown) {
-          this.setState((state, props) => ({
-            pixels: this.setPixel(state.pixels, x, y, props.penColor)
-          }));
+          this.setPixel(this.props.pixels, x, y, this.props.penColor)
         }
         break;
       }
@@ -93,7 +79,7 @@ export default class Painting extends React.Component<Props, State> {
         pixelRow.push(
           <Pixel x={ x } y={ y }
             key={ pixelKey }
-            color= { this.state.pixels[y][x].color }
+            color= { this.props.pixels[y][x].color }
             onChange = { this.handlePixelChange } />
         );
       }

@@ -33,17 +33,14 @@ export default class Pixel extends React.Component<Props> {
   }
 
   _onMouseDown = () => {
-    console.log('mouse down');
     this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.MOUSE_DOWN)
   }
 
   _onMouseUp = () => {
-    console.log('mouse up');
     this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.MOUSE_UP)
   }
 
   _onTouchStart = () => {
-    console.log('touch start');
     this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.TOUCH_START)
   }
 

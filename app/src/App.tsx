@@ -1,19 +1,18 @@
 import * as React from 'react';
 import ToolPalette from './ToolPalette';
 import Painting from './Painting';
+import { PixelStatus } from './Painting';
 import { COLORS } from './ToolPalette';
 
-const config = {
-  width: 10,
-  height: 10
-}
-
 interface Props {
+  width: number,
+  height: number,
   webSocketUrl: string
 }
 
 interface State {
-  penColor: string
+  penColor: string,
+  pixels: PixelStatus[][]
 }
 
 export default class App extends React.Component<Props, State> {
@@ -21,13 +20,31 @@ export default class App extends React.Component<Props, State> {
   constructor(props:Props) {
     super(props);
     this.state = {
-      penColor: COLORS['green']
+      penColor: COLORS['green'],
+      pixels: []
     };
+    for (let y = 0; y < this.props.height; y++) {
+      let pixelRow: PixelStatus[] = [];
+      for (let x = 0; x < this.props.width; x++) {
+        pixelRow[x] = {
+          color: COLORS['white'],
+          unsaved: false
+        };
+      }
+      this.state.pixels[y] = pixelRow;
+    }
+
   }
 
-  handleToolChange = (penColor:string) => {
+  handleToolChange = (newPenColor:string) => {
     this.setState({
-      penColor: penColor
+      penColor: newPenColor
+    })
+  }
+
+  handlePixelsChange = (newPixels:PixelStatus[][]) => {
+    this.setState({
+      pixels: newPixels
     })
   }
 
@@ -35,12 +52,14 @@ export default class App extends React.Component<Props, State> {
     return (
       <div className="app">
         <ToolPalette
-          penColor = { this.state.penColor }
-          onChange = { this.handleToolChange } />
+          onChange = { this.handleToolChange }
+          penColor = { this.state.penColor } />
         <Painting
-          width={ config.width }
-          height={ config.height }
-          penColor={ this.state.penColor } />
+          onChange = { this.handlePixelsChange }
+          width={ this.props.width }
+          height={ this.props.height }
+          penColor={ this.state.penColor }
+          pixels = { this.state.pixels } />
       </div>
     );
   }
