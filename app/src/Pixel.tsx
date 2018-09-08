@@ -23,10 +23,6 @@ export default class Pixel extends React.Component<Props, State> {
       color: this.props.initialColor,
       unsaved: this.props.initialUnsaved
     };
-    this._drawPixel = this._drawPixel.bind(this);
-    this._onMouseDown = this._onMouseDown.bind(this);
-    this._onMouseUp = this._onMouseUp.bind(this);
-    this._onTouchStart = this._onTouchStart.bind(this);
   }
 
   render() {
@@ -42,7 +38,7 @@ export default class Pixel extends React.Component<Props, State> {
     );
   }
 
-  _drawPixel() {
+  _drawPixel = () => {
     console.log('drawing at ' + this.props.x + ',' + this.props.y);
     this.setState((state, props) => ({
       color: props.penColor,
@@ -50,18 +46,18 @@ export default class Pixel extends React.Component<Props, State> {
     }));
   }
 
-  _onMouseDown() {
+  _onMouseDown = () => {
     console.debug('mouse down');
     //    this.setState({mouseDown: true});
     this._drawPixel();
   }
 
-  _onMouseUp() {
+  _onMouseUp = () => {
     console.debug('mouse up');
     //    this.setState({mouseDown: false});
   }
 
-  _onTouchStart() {
+  _onTouchStart = () => {
     console.debug('touch start');
     if (this.props.mouseDown) {
       this._drawPixel();
