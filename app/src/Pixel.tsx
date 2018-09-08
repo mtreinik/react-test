@@ -3,31 +3,25 @@ import * as React from 'react';
 interface Props {
   x: number,
   y: number,
-  mouseDown: boolean,
-  initialColor: string,
-  initialUnsaved: boolean,
-  penColor: string
-}
-
-interface State {
   color: string,
-  unsaved: boolean
+  onChange: (x:number, y:number, eventType:EVENT_TYPES) => void
 }
 
-export default class Pixel extends React.Component<Props, State> {
+export enum EVENT_TYPES {
+  MOUSE_DOWN,
+  MOUSE_UP,
+  TOUCH_START
+}
+
+export default class Pixel extends React.Component<Props> {
 
   constructor(props:Props) {
     super(props);
-
-    this.state = {
-      color: this.props.initialColor,
-      unsaved: this.props.initialUnsaved
-    };
   }
 
   render() {
     let style = {
-      backgroundColor: this.state.color
+      backgroundColor: this.props.color
     };
     return(<div
       className="pixel"
@@ -38,30 +32,19 @@ export default class Pixel extends React.Component<Props, State> {
     );
   }
 
-  _drawPixel = () => {
-    console.log('drawing at ' + this.props.x + ',' + this.props.y);
-    this.setState((state, props) => ({
-      color: props.penColor,
-      unsaved: true
-    }));
-  }
-
   _onMouseDown = () => {
     console.log('mouse down');
-    //    this.setState({mouseDown: true});
-    this._drawPixel();
+    this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.MOUSE_DOWN)
   }
 
   _onMouseUp = () => {
     console.log('mouse up');
-    //    this.setState({mouseDown: false});
+    this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.MOUSE_UP)
   }
 
   _onTouchStart = () => {
     console.log('touch start');
-    if (this.props.mouseDown) {
-      this._drawPixel();
-    }
+    this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.TOUCH_START)
   }
 
 }

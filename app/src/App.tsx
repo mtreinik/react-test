@@ -24,14 +24,22 @@ export default class App extends React.Component<Props, State> {
     };
   }
 
+  handleToolChange = (penColor:string) => {
+    this.setState({
+      penColor: penColor
+    })
+  }
+
   render() {
     return (
       <div className="app">
-        <ToolPalette penColor = { this.state.penColor } />
+        <ToolPalette
+          penColor = { this.state.penColor }
+          onChange = { this.handleToolChange } />
         <Painting
           width={ config.width }
           height={ config.height }
-          penColor={ this.state.penColor }/>
+          penColor={ this.state.penColor } />
       </div>
     );
   }

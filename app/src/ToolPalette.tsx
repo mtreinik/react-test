@@ -6,7 +6,8 @@ const COLORS: string[] = [
 ];
 
 interface Props {
-  penColor: string
+  penColor: string,
+  onChange: (penColor:string) => void
 }
 
 export default class ToolPalette extends React.Component<Props> {
@@ -21,6 +22,7 @@ export default class ToolPalette extends React.Component<Props> {
             <ColorSelector
               key={ index }
               color={ color }
+              onChange= { this.props.onChange }
               penColor={ this.props.penColor} />)
         }
       </div>

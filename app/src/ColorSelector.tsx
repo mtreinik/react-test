@@ -1,14 +1,19 @@
 import * as React from 'react';
 
 interface Props {
-  color: string
-  penColor: string
+  color: string,
+  penColor: string,
+  onChange: (penColor: string) => void
 }
 
 export default class ColorSelector extends React.Component<Props> {
 
     constructor(props: Props) {
       super(props);
+    }
+
+    onClick = () => {
+      this.props.onChange(this.props.color)
     }
 
     render() {
@@ -20,6 +25,7 @@ export default class ColorSelector extends React.Component<Props> {
       }
       return (
         <div className="color-selector"
+          onClick = { this.onClick }
           style={ style } />
       )
     }
