@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ToolPalette from './ToolPalette';
 import Painting from './Painting';
+import { COLORS } from './ToolPalette';
 
 const config = {
   width: 10,
@@ -20,7 +21,7 @@ export default class App extends React.Component<Props, State> {
   constructor(props:Props) {
     super(props);
     this.state = {
-      penColor: '#00ff00'
+      penColor: COLORS['green']
     };
   }
 

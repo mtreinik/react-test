@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Pixel from './Pixel';
 import { EVENT_TYPES } from './Pixel';
+import { COLORS } from './ToolPalette';
 
 interface PixelStatus {
   color: string,
@@ -39,7 +40,7 @@ export default class Painting extends React.Component<Props, State> {
       let pixelRow: PixelStatus[] = [];
       for (let x = 0; x < this.props.width; x++) {
         pixelRow[x] = {
-          color: rgbToHex(x*25, y*25, 0),
+          color: COLORS['white'],
           unsaved: false
         };
       }
