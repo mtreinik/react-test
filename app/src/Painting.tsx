@@ -8,16 +8,17 @@ interface PixelStatus {
 
 interface Props {
   width: number,
-  height: number
+  height: number,
+  penColor: string
 }
 
-function componentToHex(c:number): string {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+function numberToHex(num:number): string {
+    let hex = num.toString(16);
+    return hex.length < 2 ? '0' + hex : hex;
 }
 
-function rgbToHex(r:number, g:number, b:number): string {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+function rgbToHex(red:number, green:number, blue:number): string {
+    return '#' + numberToHex(red) + numberToHex(green) + numberToHex(blue);
 }
 
 export default class Painting extends React.Component<Props> {
@@ -47,8 +48,9 @@ export default class Painting extends React.Component<Props> {
         pixelRow.push(
           <Pixel x={ x } y={ y }
             mouseDown={ this.mouseDown }
-            color= { this.pixels[y][x].color }
-            unsaved = { this.pixels[y][x].unsaved } />
+            initialColor= { this.pixels[y][x].color }
+            initialUnsaved = { this.pixels[y][x].unsaved }
+            penColor = { this.props.penColor }/>
         );
       }
       pixelRows.push(

@@ -4,6 +4,6 @@ import * as ReactDOM from "react-dom";
 import App from './src/App'
 
 ReactDOM.render(
-  <App />,
+  <App webSocketUrl="ws://example.com/" />,
   document.getElementById("main")
 );

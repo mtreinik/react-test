@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ColorPalette from './ColorPalette';
+import ToolPalette from './ToolPalette';
 import Painting from './Painting';
 
 const config = {
@@ -7,15 +7,31 @@ const config = {
   height: 10
 }
 
-export default class App extends React.Component <{}> {
+interface Props {
+  webSocketUrl: string
+}
+
+interface State {
+  penColor: string
+}
+
+export default class App extends React.Component<Props, State> {
+
+  constructor(props:Props) {
+    super(props);
+    this.state = {
+      penColor: '#00ff00'
+    };
+  }
+
   render() {
     return (
       <div className="app">
-        <div className="drawing-area">
-          <ColorPalette />
-          <Painting width={ config.width } height={ config.height } />
-        </div>
-        <div className="footer">Mikko Reinikainen, 2018</div>
+        <ToolPalette />
+        <Painting
+          width={ config.width }
+          height={ config.height }
+          penColor={ this.state.penColor }/>
       </div>
     );
   }
