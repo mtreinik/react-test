@@ -27,7 +27,7 @@ export default class App extends React.Component<Props, State> {
   render() {
     return (
       <div className="app">
-        <ToolPalette />
+        <ToolPalette penColor = { this.state.penColor } />
         <Painting
           width={ config.width }
           height={ config.height }

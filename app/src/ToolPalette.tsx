@@ -5,8 +5,12 @@ const COLORS: string[] = [
   '#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffffff'
 ];
 
-export default class ToolPalette extends React.Component<{}> {
-  constructor(props:any) {
+interface Props {
+  penColor: string
+}
+
+export default class ToolPalette extends React.Component<Props> {
+  constructor(props:Props) {
     super(props);
   }
   render() {
@@ -14,7 +18,10 @@ export default class ToolPalette extends React.Component<{}> {
       <div className="tool-palette">
         {
           COLORS.map((color, index) =>
-            <ColorSelector key={ index } color={ color } />) 
+            <ColorSelector
+              key={ index }
+              color={ color }
+              penColor={ this.props.penColor} />)
         }
       </div>
     );
