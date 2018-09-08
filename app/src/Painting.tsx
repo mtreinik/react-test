@@ -45,16 +45,19 @@ export default class Painting extends React.Component<Props> {
     for (let y = 0; y < this.props.height; y++) {
       let pixelRow: JSX.Element[] = [];
       for (let x = 0; x < this.props.width; x++) {
+        let pixelKey = x + ',' + y;
         pixelRow.push(
           <Pixel x={ x } y={ y }
+            key={ pixelKey }
             mouseDown={ this.mouseDown }
             initialColor= { this.pixels[y][x].color }
             initialUnsaved = { this.pixels[y][x].unsaved }
             penColor = { this.props.penColor }/>
         );
       }
+      let rowKey = 'row' + y;
       pixelRows.push(
-        <div className="pixel-row">
+        <div className="pixel-row" key={ rowKey }>
           { pixelRow }
         </div>
       );

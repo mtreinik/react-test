@@ -1,6 +1,6 @@
 var path = require("path");
 var config = {
-  mode: "production",
+  mode: "development",
   entry: ["./app/main.tsx"],
   output: {
     path: path.resolve(__dirname, "app/build"),

@@ -12,7 +12,10 @@ export default class ToolPalette extends React.Component<{}> {
   render() {
     return (
       <div className="tool-palette">
-        { COLORS.map((color) => <ColorSelector color={ color } />) }
+        {
+          COLORS.map((color, index) =>
+            <ColorSelector key={ index } color={ color } />) 
+        }
       </div>
     );
   }

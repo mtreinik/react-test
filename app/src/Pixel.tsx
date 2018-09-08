@@ -3,6 +3,7 @@ import * as React from 'react';
 interface Props {
   x: number,
   y: number,
+  key: string,
   mouseDown: boolean,
   initialColor: string,
   initialUnsaved: boolean,
@@ -47,18 +48,18 @@ export default class Pixel extends React.Component<Props, State> {
   }
 
   _onMouseDown = () => {
-    console.debug('mouse down');
+    console.log('mouse down');
     //    this.setState({mouseDown: true});
     this._drawPixel();
   }
 
   _onMouseUp = () => {
-    console.debug('mouse up');
+    console.log('mouse up');
     //    this.setState({mouseDown: false});
   }
 
   _onTouchStart = () => {
-    console.debug('touch start');
+    console.log('touch start');
     if (this.props.mouseDown) {
       this._drawPixel();
     }
