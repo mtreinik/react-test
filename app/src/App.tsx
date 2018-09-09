@@ -71,7 +71,16 @@ export default class App extends React.Component<Props, State> {
     })
   }
 
-  handleToolSyncChange = (syncAction:SyncAction) => {
+  handlePaintingIdChange = (newPaintingId:number) => {
+    if (newPaintingId !== this.state.paintingId) {
+      this.setState({
+        paintingId: newPaintingId,
+        pixels: this.initializePixels() // TODO fetch painting from server
+      })
+    }
+  }
+
+  handleToolSyncAction = (syncAction:SyncAction) => {
     let online = syncAction === SyncAction.GO_ONLINE;
     this.setState({
       online: online
@@ -98,7 +107,8 @@ export default class App extends React.Component<Props, State> {
           online = { this.state.online }
           penColor = { this.state.penColor }
           onColorChange = { this.handleToolColorChange }
-          onSyncChange = { this.handleToolSyncChange } />
+          onPaintingIdChange = { this.handlePaintingIdChange }
+          onSyncAction = { this.handleToolSyncAction } />
         <Painting
           width={ this.props.width }
           height={ this.props.height }

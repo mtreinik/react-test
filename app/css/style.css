@@ -12,8 +12,12 @@ body {
   flex-grow: 1;
 }
 .sync-tool {
-  flex-grow: 1;
+  flex-grow: 0;
   border: 5px solid white;
+}
+.painting-id {
+  margin-left: 1em;
+  margin-right: 1em;
 }
 .color-selector {
   flex-grow: 1;

@@ -15,11 +15,12 @@ export const COLORS: {[key:string]: string } = {
 };
 
 interface Props {
-  penColor: string,
   paintingId: number,
+  online: boolean,
+  penColor: string,
   onColorChange: (penColor:string) => void,
-  onSyncChange: (syncAction:SyncAction) => void,
-  online: boolean
+  onSyncAction: (syncAction:SyncAction) => void,
+  onPaintingIdChange: (newPaintingId:number) => void
 }
 
 export default class ToolPalette extends React.Component<Props> {
@@ -34,24 +35,18 @@ export default class ToolPalette extends React.Component<Props> {
         <SyncTool
           paintingId = { this.props.paintingId }
           online = { this.props.online }
-          onChange = { this.handleSyncToolChange } />
+          onPaintingIdChange = { this.props.onPaintingIdChange }
+          onSyncAction = { this.props.onSyncAction } />
         {
           Object.keys(COLORS).map((key, index) =>
             <ColorSelector
               key={ index }
               color={ COLORS[key] }
-              onChange= { this.handleColorChange }
+              onChange= { this.props.onColorChange }
               penColor={ this.props.penColor} />)
         }
       </div>
     );
   }
 
-  handleSyncToolChange = (syncAction:SyncAction) => {
-    this.props.onSyncChange(syncAction);
-  }
-
-  handleColorChange = (penColor: string) => {
-    this.props.onColorChange(penColor);
-  }
 }
