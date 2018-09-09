@@ -15,7 +15,6 @@ interface Props {
 interface State {
   penColor: string,
   pixels: PixelStatus[][],
-  changedPixels: PixelValue[]
 }
 
 export default class App extends React.Component<Props, State> {
@@ -24,8 +23,7 @@ export default class App extends React.Component<Props, State> {
     super(props);
     this.state = {
       penColor: COLORS['green'],
-      pixels: this.initializePixels(),
-      changedPixels: []
+      pixels: this.initializePixels()
     };
   }
 
@@ -59,7 +57,6 @@ export default class App extends React.Component<Props, State> {
     })
     this.setState({
       pixels: newPixels,
-      changedPixels: []  // TODO tässä saattaa olla bugi
     })
   }
 
@@ -73,28 +70,6 @@ export default class App extends React.Component<Props, State> {
     this.setState({
       pixels: newPixels
     })
-    this.sendChanges();
-  }
-
-  sendChanges = () => {
-    let changedPixels:PixelValue[] = [];
-    let newPixels:PixelStatus[][] = [...this.state.pixels];
-    for (let y = 0; y < this.props.height; y++) {
-      for (let x = 0; x < this.props.width; x++) {
-        if (this.state.pixels[y][x].unsaved) {
-          changedPixels.push({
-            x: x,
-            y: y,
-            color: this.state.pixels[y][x].color
-          });
-          newPixels[y][x].unsaved = false;
-        }
-      }
-    }
-    this.setState({
-      changedPixels: changedPixels,
-      pixels: newPixels
-    });
   }
 
   render() {
@@ -102,7 +77,7 @@ export default class App extends React.Component<Props, State> {
       <div className="app">
         <WebSocketClient
           webSocketUrl = { this.props.webSocketUrl }
-          changedPixels = { this.state.changedPixels }
+          pixels = { this.state.pixels }
           onChange = { this.handleWebSocketChange } />
         <ToolPalette
           onChange = { this.handleToolChange }

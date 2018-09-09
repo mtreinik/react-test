@@ -84,7 +84,8 @@ export default class Painting extends React.Component<Props, State> {
           <Pixel x={ x } y={ y }
             key={ pixelKey }
             color= { this.props.pixels[y][x].color }
-            onChange = { this.handlePixelChange } />
+            onChange = { this.handlePixelChange }
+            unsaved = { this.props.pixels[y][x].unsaved } />
         );
       }
       let rowKey = 'row' + y;

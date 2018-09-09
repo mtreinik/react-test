@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { PixelStatus } from './Painting';
 
 const TIMEOUT = 1000
 
 enum MessageType {
   Open = "OPEN",
   Painting = "PAINTING",
-  Update = "UPDATE"
+  Changes = "CHANGES"
 }
 
 export interface PixelValue {
@@ -16,7 +17,7 @@ export interface PixelValue {
 
 interface Props {
   webSocketUrl: string,
-  changedPixels: PixelValue[],
+  pixels: PixelStatus[][],
   onChange: (changedPixels:PixelValue[]) => void
 }
 
@@ -34,13 +35,29 @@ export default class WebSocketClient extends React.Component<Props, State> {
   }
 
   render() {
-    if (this.props.changedPixels.length > 0) {
-      // TODO FIXME this might send changed pixels multiple times
-      this.sendUpdate(this.props.changedPixels);
+    let changedPixels:PixelValue[] = this.getChangedPixels(this.props.pixels);
+    if (changedPixels.length > 0) {
+      this.sendChanges(changedPixels);
     }
     return (
       <div>websocket</div>
     );
+  }
+
+  getChangedPixels(pixels:PixelStatus[][]):PixelValue[] {
+    let changedPixels:PixelValue[] = [];
+    pixels.forEach((pixelRow) => {
+      pixelRow.forEach((pixel) => {
+        if (pixel.unsaved) {
+          changedPixels.push({
+            x: pixel.x,
+            y: pixel.y,
+            color: pixel.color
+          })
+        }
+      });
+    });
+    return changedPixels;
   }
 
   initializeWebSocket(webSocketUrl: string):WebSocket {
@@ -75,7 +92,7 @@ export default class WebSocketClient extends React.Component<Props, State> {
     let data:any = JSON.parse(event.data);
 //    console.log('data=' + JSON.stringify(data));
     switch (data.type) {
-      case MessageType.Update: {
+      case MessageType.Changes: {
 //        console.log('update message ' + JSON.stringify(data.pixels));
         this.props.onChange(data.pixels);
         break;
@@ -83,9 +100,9 @@ export default class WebSocketClient extends React.Component<Props, State> {
     }
   }
 
-  sendUpdate(changedPixels:PixelValue[]) {
+  sendChanges(changedPixels:PixelValue[]) {
     let message = JSON.stringify({
-        type: MessageType.Update,
+        type: MessageType.Changes,
         pixels: changedPixels
     });
 //    console.log('sending ' + message);

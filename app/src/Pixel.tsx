@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { COLORS } from './ToolPalette';
 
 interface Props {
   x: number,
   y: number,
   color: string,
+  unsaved: boolean,
   onChange: (x:number, y:number, eventType:EVENT_TYPES) => void
 }
 
@@ -20,8 +22,11 @@ export default class Pixel extends React.Component<Props> {
   }
 
   render() {
-    let style = {
-      backgroundColor: this.props.color
+    const borderColor =
+      this.props.unsaved ? 'black' : 'lightgray';
+    const style = {
+      backgroundColor: this.props.color,
+      border: '2px solid ' + borderColor
     };
     return(<div
       className="pixel"
