@@ -10,3 +10,9 @@ npm Install
 Building
 ---
 npm run build
+
+Deploying to Heroku
+---
+heroku login
+heroku create
+<update webSocketUrl>

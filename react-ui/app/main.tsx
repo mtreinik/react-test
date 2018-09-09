@@ -6,7 +6,7 @@ import App from './src/App'
 const CONFIG = {
   width: 10,
   height: 10,
-  webSocketUrl: 'ws://cryptic-harbor-46674.herokuapp.com/'
+  webSocketUrl: 'ws://guarded-fjord-59352.herokuapp.com/'
 }
 
 ReactDOM.render(
