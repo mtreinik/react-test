@@ -1,7 +1,8 @@
 const express = require('express')
+const path = require('path');
 const http = require('http')
 const WebSocket = require('ws')
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 80
 
 const app = express()
 app.use(express.static(path.resolve(__dirname, '../react-ui/app')));
