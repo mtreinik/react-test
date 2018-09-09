@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/tsc --module commonjs --outdir build/ --noImplicitAny --sourceMap --target ES5 --lib es6 server/index.ts && node build",
+    "start": "/node_modules/.bin/tsc --module commonjs --outdir build/ --noImplicitAny --sourceMap --target ES5 --lib es6 server/index.ts && node build",
     "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build && cd .."
   },
   "cacheDirectories": [
