@@ -11,6 +11,10 @@ body {
   display: flex;
   flex-grow: 1;
 }
+.sync-tool {
+  flex-grow: 1;
+  border: 5px solid white;
+}
 .color-selector {
   flex-grow: 1;
   border: 5px solid lightgray;

@@ -61,7 +61,7 @@ export default class Painting extends React.Component<Props, State> {
       }
       case EVENT_TYPES.MOUSE_UP: {
 //        console.log('mouse up');
-        this.setState({mouseDown: false});
+        this.setState({ mouseDown: false });
         break;
       }
       case EVENT_TYPES.TOUCH_START: {
@@ -72,6 +72,10 @@ export default class Painting extends React.Component<Props, State> {
         break;
       }
     }
+  }
+
+  handleMouseLeave = () => {
+    this.setState({ mouseDown: false });
   }
 
   render() {
@@ -96,7 +100,9 @@ export default class Painting extends React.Component<Props, State> {
       );
     }
     return (
-      <div className="pixels">
+      <div className="pixels"
+        onMouseLeave={ this.handleMouseLeave }
+        >
         { pixelRows }
       </div>
     );

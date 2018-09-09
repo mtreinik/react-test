@@ -18,6 +18,7 @@ export interface PixelValue {
 interface Props {
   webSocketUrl: string,
   pixels: PixelStatus[][],
+  online: boolean,
   onChange: (changedPixels:PixelValue[]) => void
 }
 
@@ -35,13 +36,13 @@ export default class WebSocketClient extends React.Component<Props, State> {
   }
 
   render() {
-    let changedPixels:PixelValue[] = this.getChangedPixels(this.props.pixels);
-    if (changedPixels.length > 0) {
-      this.sendChanges(changedPixels);
+    if (this.props.online) {
+      let changedPixels:PixelValue[] = this.getChangedPixels(this.props.pixels);
+      if (changedPixels.length > 0) {
+        this.sendChanges(changedPixels);
+      }
     }
-    return (
-      <div>websocket</div>
-    );
+    return (false);
   }
 
   getChangedPixels(pixels:PixelStatus[][]):PixelValue[] {
@@ -88,6 +89,10 @@ export default class WebSocketClient extends React.Component<Props, State> {
   }
 
   onMessage = (event:MessageEvent) => {
+    if (!this.props.online) {
+      // TODO FIXME this forgets remote changes made during offline mode
+      return;
+    }
 //    console.log('WebSocket message: ' + JSON.stringify(event));
     let data:any = JSON.parse(event.data);
 //    console.log('data=' + JSON.stringify(data));

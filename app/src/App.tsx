@@ -5,6 +5,7 @@ import { PixelStatus } from './Painting';
 import { COLORS } from './ToolPalette';
 import WebSocketClient from './WebSocketClient';
 import { PixelValue } from './WebSocketClient';
+import { SyncAction } from './SyncTool';
 
 interface Props {
   width: number,
@@ -15,6 +16,7 @@ interface Props {
 interface State {
   penColor: string,
   pixels: PixelStatus[][],
+  online: boolean
 }
 
 export default class App extends React.Component<Props, State> {
@@ -23,7 +25,8 @@ export default class App extends React.Component<Props, State> {
     super(props);
     this.state = {
       penColor: COLORS['green'],
-      pixels: this.initializePixels()
+      pixels: this.initializePixels(),
+      online: true
     };
   }
 
@@ -60,9 +63,16 @@ export default class App extends React.Component<Props, State> {
     })
   }
 
-  handleToolChange = (newPenColor:string) => {
+  handleToolColorChange = (newPenColor:string) => {
     this.setState({
-      penColor: newPenColor
+      penColor: newPenColor,
+    })
+  }
+
+  handleToolSyncChange = (syncAction:SyncAction) => {
+    let online = syncAction === SyncAction.GO_ONLINE;
+    this.setState({
+      online: online
     })
   }
 
@@ -78,16 +88,19 @@ export default class App extends React.Component<Props, State> {
         <WebSocketClient
           webSocketUrl = { this.props.webSocketUrl }
           pixels = { this.state.pixels }
+          online = { this.state.online }
           onChange = { this.handleWebSocketChange } />
         <ToolPalette
-          onChange = { this.handleToolChange }
-          penColor = { this.state.penColor } />
+          online = { this.state.online }
+          penColor = { this.state.penColor }
+          onColorChange = { this.handleToolColorChange }
+          onSyncChange = { this.handleToolSyncChange } />
         <Painting
-          onChange = { this.handlePixelsChange }
           width={ this.props.width }
           height={ this.props.height }
           penColor={ this.state.penColor }
-          pixels = { this.state.pixels } />
+          pixels = { this.state.pixels }
+          onChange = { this.handlePixelsChange } />
       </div>
     );
   }
