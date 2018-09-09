@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { COLORS } from './ToolPalette';
-
-export enum SyncAction {
-  GO_ONLINE,
-  GO_OFFLINE
-}
+import { SyncAction } from './App';
 
 interface Props {
   paintingId: number,
@@ -25,13 +21,13 @@ export default class SyncTool extends React.Component<Props> {
     }
 
     handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
       const inputValue = event.target.value;
       let newPaintingId = parseInt(inputValue, 10);
       if (isNaN(newPaintingId)) {
         newPaintingId = 0;
       }
       this.props.onPaintingIdChange(newPaintingId);
-      event.preventDefault();
     }
 
     render() {
@@ -41,8 +37,8 @@ export default class SyncTool extends React.Component<Props> {
       return (
         <div className="sync-tool">
 
-          <button onClick = { this.handleClick }
-            style={ buttonStyle }>
+          <button style={ buttonStyle }
+            onClick = { this.handleClick }>
             { this.props.online ? 'ONLINE' : 'OFFLINE'}
           </button>
 
@@ -55,6 +51,6 @@ export default class SyncTool extends React.Component<Props> {
           </span>
 
         </div>
-      )
+      );
     }
 }

@@ -13,7 +13,7 @@ export default class ColorSelector extends React.Component<Props> {
     }
 
     onClick = () => {
-      this.props.onChange(this.props.color)
+      this.props.onChange(this.props.color);
     }
 
     render() {
@@ -22,11 +22,11 @@ export default class ColorSelector extends React.Component<Props> {
       const style = {
         backgroundColor: this.props.color,
         border: '5px solid ' + borderColor
-      }
+      };
       return (
         <div className="color-selector"
           onClick = { this.onClick }
           style={ style } />
-      )
+      );
     }
 }

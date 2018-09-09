@@ -31,22 +31,26 @@ export default class Pixel extends React.Component<Props> {
     return(<div
       className="pixel"
       style={ style }
-      onMouseDown={ this._onMouseDown }
-      onMouseUp={ this._onMouseUp }
-      onMouseEnter={ this._onTouchStart } />
+      onMouseDown={ this.handleMouseDown }
+      onMouseUp={ this.handleMouseUp }
+      onMouseEnter={ this.handleTouchStart } />
     );
   }
 
-  _onMouseDown = () => {
-    this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.MOUSE_DOWN)
+  onChange = (eventType:EVENT_TYPES) => {
+    this.props.onChange(this.props.x, this.props.y, eventType);
   }
 
-  _onMouseUp = () => {
-    this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.MOUSE_UP)
+  handleMouseDown = () => {
+    this.onChange(EVENT_TYPES.MOUSE_DOWN);
   }
 
-  _onTouchStart = () => {
-    this.props.onChange(this.props.x, this.props.y, EVENT_TYPES.TOUCH_START)
+  handleMouseUp = () => {
+    this.onChange(EVENT_TYPES.MOUSE_UP);
+  }
+
+  handleTouchStart = () => {
+    this.onChange(EVENT_TYPES.TOUCH_START);
   }
 
 }

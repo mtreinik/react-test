@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PixelStatus } from './Painting';
+import { PixelValue, PixelStatus } from './App';
 
 const TIMEOUT = 1000
 
@@ -7,12 +7,6 @@ enum MessageType {
   Open = "OPEN",
   Painting = "PAINTING",
   Changes = "CHANGES"
-}
-
-export interface PixelValue {
-  x: number,
-  y: number,
-  color: string
 }
 
 interface Props {

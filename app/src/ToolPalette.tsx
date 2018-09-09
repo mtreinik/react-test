@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ColorSelector from './ColorSelector';
 import SyncTool from './SyncTool';
-import { SyncAction } from './SyncTool';
+import { SyncAction } from './App';
 
 export const COLORS: {[key:string]: string } = {
   black: '#000000',
@@ -12,7 +12,7 @@ export const COLORS: {[key:string]: string } = {
   magenta: '#ff00ff',
   cyan: '#00ffff',
   white: '#ffffff'
-};
+}
 
 interface Props {
   paintingId: number,

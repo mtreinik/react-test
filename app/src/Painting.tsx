@@ -2,13 +2,7 @@ import * as React from 'react';
 import Pixel from './Pixel';
 import { EVENT_TYPES } from './Pixel';
 import { COLORS } from './ToolPalette';
-
-export interface PixelStatus {
-  x: number,
-  y: number,
-  color: string,
-  unsaved: boolean
-}
+import { PixelStatus } from './App';
 
 interface Props {
   onChange: (pixels:PixelStatus[][]) => void,
@@ -47,25 +41,22 @@ export default class Painting extends React.Component<Props, State> {
       y: y,
       color: color,
       unsaved: true
-    }
+    };
     this.props.onChange(newPixels);
   }
 
   handlePixelChange = (x:number, y:number, eventType:EVENT_TYPES) => {
     switch (eventType) {
       case EVENT_TYPES.MOUSE_DOWN: {
-//        console.log('mouse down');
         this.setState({ mouseDown: true });
         this.setPixel(this.props.pixels, x, y, this.props.penColor)
         break;
       }
       case EVENT_TYPES.MOUSE_UP: {
-//        console.log('mouse up');
         this.setState({ mouseDown: false });
         break;
       }
       case EVENT_TYPES.TOUCH_START: {
-//        console.log('touch start');
         if (this.state.mouseDown) {
           this.setPixel(this.props.pixels, x, y, this.props.penColor)
         }

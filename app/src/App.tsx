@@ -1,11 +1,23 @@
 import * as React from 'react';
 import ToolPalette from './ToolPalette';
 import Painting from './Painting';
-import { PixelStatus } from './Painting';
 import { COLORS } from './ToolPalette';
 import WebSocketClient from './WebSocketClient';
-import { PixelValue } from './WebSocketClient';
-import { SyncAction } from './SyncTool';
+
+export enum SyncAction {
+  GO_ONLINE,
+  GO_OFFLINE
+}
+
+export interface PixelValue {
+  x: number,
+  y: number,
+  color: string
+}
+
+export interface PixelStatus extends PixelValue {
+  unsaved: boolean
+}
 
 interface Props {
   width: number,
@@ -50,7 +62,6 @@ export default class App extends React.Component<Props, State> {
   }
 
   handleWebSocketChange = (changedPixels:PixelValue[]) => {
-//    console.log('changing pixels: ' + JSON.stringify(changedPixels));
     let newPixels:PixelStatus[][] = [...this.state.pixels]
     changedPixels.forEach((pixelValue:PixelValue) => {
       newPixels[pixelValue.y][pixelValue.x] = {
@@ -59,16 +70,16 @@ export default class App extends React.Component<Props, State> {
         color: pixelValue.color,
         unsaved: false
       };
-    })
+    });
     this.setState({
       pixels: newPixels,
-    })
+    });
   }
 
   handleToolColorChange = (newPenColor:string) => {
     this.setState({
       penColor: newPenColor,
-    })
+    });
   }
 
   handlePaintingIdChange = (newPaintingId:number) => {
@@ -76,7 +87,7 @@ export default class App extends React.Component<Props, State> {
       this.setState({
         paintingId: newPaintingId,
         pixels: this.initializePixels() // TODO fetch painting from server
-      })
+      });
     }
   }
 
@@ -84,13 +95,13 @@ export default class App extends React.Component<Props, State> {
     const online = syncAction === SyncAction.GO_ONLINE;
     this.setState({
       online: online
-    })
+    });
   }
 
   handlePixelsChange = (newPixels:PixelStatus[][]) => {
     this.setState({
       pixels: newPixels
-    })
+    });
   }
 
   render() {
