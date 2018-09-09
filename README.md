@@ -16,4 +16,4 @@ Deploying to Heroku
 heroku login
 heroku create
 <update webSocketUrl>
-git push heroku master
+git push heroku heroku-react-node:master
