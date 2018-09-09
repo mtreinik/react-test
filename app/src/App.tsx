@@ -14,6 +14,7 @@ interface Props {
 }
 
 interface State {
+  paintingId: number,
   penColor: string,
   pixels: PixelStatus[][],
   online: boolean
@@ -24,6 +25,7 @@ export default class App extends React.Component<Props, State> {
   constructor(props:Props) {
     super(props);
     this.state = {
+      paintingId: 1,
       penColor: COLORS['green'],
       pixels: this.initializePixels(),
       online: true
@@ -87,10 +89,12 @@ export default class App extends React.Component<Props, State> {
       <div className="app">
         <WebSocketClient
           webSocketUrl = { this.props.webSocketUrl }
+          paintingId = { this.state.paintingId }
           pixels = { this.state.pixels }
           online = { this.state.online }
           onChange = { this.handleWebSocketChange } />
         <ToolPalette
+          paintingId = { this.state.paintingId }
           online = { this.state.online }
           penColor = { this.state.penColor }
           onColorChange = { this.handleToolColorChange }

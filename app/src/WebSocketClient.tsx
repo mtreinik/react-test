@@ -17,6 +17,7 @@ export interface PixelValue {
 
 interface Props {
   webSocketUrl: string,
+  paintingId: number,
   pixels: PixelStatus[][],
   online: boolean,
   onChange: (changedPixels:PixelValue[]) => void
@@ -42,6 +43,8 @@ export default class WebSocketClient extends React.Component<Props, State> {
         this.sendChanges(changedPixels);
       }
     }
+    // Nothing to render for now.
+    // This component could be used for displaying status of WebSocket communication.
     return (false);
   }
 
@@ -95,6 +98,12 @@ export default class WebSocketClient extends React.Component<Props, State> {
     }
 //    console.log('WebSocket message: ' + JSON.stringify(event));
     let data:any = JSON.parse(event.data);
+
+    if (data.paintingId !== this.props.paintingId) {
+      // skip messages related to other paintings
+      return;
+    }
+
 //    console.log('data=' + JSON.stringify(data));
     switch (data.type) {
       case MessageType.Changes: {
@@ -108,6 +117,7 @@ export default class WebSocketClient extends React.Component<Props, State> {
   sendChanges(changedPixels:PixelValue[]) {
     let message = JSON.stringify({
         type: MessageType.Changes,
+        paintingId: this.props.paintingId,
         pixels: changedPixels
     });
 //    console.log('sending ' + message);

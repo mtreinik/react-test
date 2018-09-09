@@ -6,6 +6,7 @@ export enum SyncAction {
 }
 
 interface Props {
+  paintingId: number,
   online: boolean,
   onChange: (syncAction: SyncAction) => void
 }
@@ -25,7 +26,8 @@ export default class SyncTool extends React.Component<Props> {
       return (
         <div className="sync-tool"
           onClick = { this.onClick }>
-          { this.props.online ? 'ONLINE' : 'OFFLINE '}
+          { this.props.online ? 'ONLINE' : 'OFFLINE '}<br />
+          painting { this.props.paintingId }
         </div>
       )
     }

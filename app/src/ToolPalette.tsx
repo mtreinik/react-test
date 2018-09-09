@@ -16,6 +16,7 @@ export const COLORS: {[key:string]: string } = {
 
 interface Props {
   penColor: string,
+  paintingId: number,
   onColorChange: (penColor:string) => void,
   onSyncChange: (syncAction:SyncAction) => void,
   online: boolean
@@ -31,6 +32,7 @@ export default class ToolPalette extends React.Component<Props> {
     return (
       <div className="tool-palette">
         <SyncTool
+          paintingId = { this.props.paintingId }
           online = { this.props.online }
           onChange = { this.handleSyncToolChange } />
         {
