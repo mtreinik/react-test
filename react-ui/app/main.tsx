@@ -7,6 +7,7 @@ const CONFIG = {
   width: 10,
   height: 10,
   webSocketUrl: 'ws://guarded-fjord-59352.herokuapp.com/'
+//  webSocketUrl: 'ws://localhost:5000/'
 }
 
 ReactDOM.render(
