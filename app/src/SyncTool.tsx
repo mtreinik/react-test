@@ -25,8 +25,8 @@ export default class SyncTool extends React.Component<Props> {
     }
 
     handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
-      let val = event.target.value;
-      let newPaintingId = parseInt(val, 10);
+      const inputValue = event.target.value;
+      let newPaintingId = parseInt(inputValue, 10);
       if (isNaN(newPaintingId)) {
         newPaintingId = 0;
       }
@@ -35,7 +35,7 @@ export default class SyncTool extends React.Component<Props> {
     }
 
     render() {
-      let buttonStyle = {
+      const buttonStyle = {
         backgroundColor: this.props.online ? COLORS['green'] : COLORS['red']
       };
       return (

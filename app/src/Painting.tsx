@@ -23,7 +23,7 @@ interface State {
 }
 
 function numberToHex(num:number): string {
-    let hex = num.toString(16);
+    const hex = num.toString(16);
     return hex.length < 2 ? '0' + hex : hex;
 }
 
@@ -83,7 +83,7 @@ export default class Painting extends React.Component<Props, State> {
     for (let y = 0; y < this.props.height; y++) {
       let pixelRow: JSX.Element[] = [];
       for (let x = 0; x < this.props.width; x++) {
-        let pixelKey = x + ',' + y;
+        const pixelKey = x + ',' + y;
         pixelRow.push(
           <Pixel x={ x } y={ y }
             key={ pixelKey }
@@ -92,7 +92,7 @@ export default class Painting extends React.Component<Props, State> {
             unsaved = { this.props.pixels[y][x].unsaved } />
         );
       }
-      let rowKey = 'row' + y;
+      const rowKey = 'row' + y;
       pixelRows.push(
         <div className="pixel-row" key={ rowKey }>
           { pixelRow }

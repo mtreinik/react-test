@@ -97,7 +97,7 @@ export default class WebSocketClient extends React.Component<Props, State> {
       return;
     }
 //    console.log('WebSocket message: ' + JSON.stringify(event));
-    let data:any = JSON.parse(event.data);
+    const data:any = JSON.parse(event.data);
 
     if (data.paintingId !== this.props.paintingId) {
       // skip messages related to other paintings
@@ -115,7 +115,7 @@ export default class WebSocketClient extends React.Component<Props, State> {
   }
 
   sendChanges(changedPixels:PixelValue[]) {
-    let message = JSON.stringify({
+    const message = JSON.stringify({
         type: MessageType.Changes,
         paintingId: this.props.paintingId,
         pixels: changedPixels

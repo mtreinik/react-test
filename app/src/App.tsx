@@ -81,7 +81,7 @@ export default class App extends React.Component<Props, State> {
   }
 
   handleToolSyncAction = (syncAction:SyncAction) => {
-    let online = syncAction === SyncAction.GO_ONLINE;
+    const online = syncAction === SyncAction.GO_ONLINE;
     this.setState({
       online: online
     })
