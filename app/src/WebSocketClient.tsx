@@ -89,6 +89,7 @@ export default class WebSocketClient extends React.Component<Props, State> {
         pixels: changedPixels
     });
 //    console.log('sending ' + message);
+    // TODO check state of webSocket before sending
     this.state.webSocket.send(message);
   }
 
