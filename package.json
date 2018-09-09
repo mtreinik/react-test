@@ -16,10 +16,7 @@
   ],
   "dependencies": {
     "express": "4.16.3",
-    "ws": "6.0.0",
-    "@types/express": "4.16.0",
-    "@types/ws": "6.0.1",
-    "typescript": "3.0.3"
+    "ws": "6.0.0"
   },
   "repository": {
     "type": "git",
@@ -39,5 +36,8 @@
   },
   "homepage": "https://github.com/mtreinik/react-test#readme",
   "devDependencies": {
+    "@types/express": "4.16.0",
+    "@types/ws": "6.0.1",
+    "typescript": "3.0.3"
   }
 }
