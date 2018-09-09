@@ -110,7 +110,9 @@ export default class WebSocketClient extends React.Component<Props, State> {
         paintingId: this.props.paintingId,
         pixels: changedPixels
     });
-    this.state.webSocket.send(message);
+    if (this.state.webSocket.readyState === 1) {
+      this.state.webSocket.send(message);
+    }
   }
 
 }
