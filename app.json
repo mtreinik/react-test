@@ -1,0 +1,14 @@
+{
+  "name": "WePaint",
+  "description": "WePaint - a collaborative painting app",
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
