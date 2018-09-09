@@ -87,21 +87,17 @@ export default class WebSocketClient extends React.Component<Props, State> {
 
   onMessage = (event:MessageEvent) => {
     if (!this.props.online) {
-      // TODO FIXME this forgets remote changes made during offline mode
+      // TODO FIXME this ignores remote changes made during offline mode
       return;
     }
-//    console.log('WebSocket message: ' + JSON.stringify(event));
     const data:any = JSON.parse(event.data);
 
     if (data.paintingId !== this.props.paintingId) {
       // skip messages related to other paintings
       return;
     }
-
-//    console.log('data=' + JSON.stringify(data));
     switch (data.type) {
       case MessageType.Changes: {
-//        console.log('update message ' + JSON.stringify(data.pixels));
         this.props.onChange(data.pixels);
         break;
       }
@@ -114,8 +110,6 @@ export default class WebSocketClient extends React.Component<Props, State> {
         paintingId: this.props.paintingId,
         pixels: changedPixels
     });
-//    console.log('sending ' + message);
-    // TODO check state of webSocket before sending
     this.state.webSocket.send(message);
   }
 
