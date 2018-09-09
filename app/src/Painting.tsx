@@ -4,6 +4,8 @@ import { EVENT_TYPES } from './Pixel';
 import { COLORS } from './ToolPalette';
 
 export interface PixelStatus {
+  x: number,
+  y: number,
   color: string,
   unsaved: boolean
 }
@@ -41,6 +43,8 @@ export default class Painting extends React.Component<Props, State> {
   setPixel = (pixels: PixelStatus[][], x: number, y: number, color: string) => {
     let newPixels = [...pixels];
     newPixels[y][x] = {
+      x: x,
+      y: y,
       color: color,
       unsaved: true
     }

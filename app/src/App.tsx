@@ -35,6 +35,8 @@ export default class App extends React.Component<Props, State> {
       let pixelRow: PixelStatus[] = [];
       for (let x = 0; x < this.props.width; x++) {
         pixelRow[x] = {
+          x: x,
+          y: y,
           color: COLORS['white'],
           unsaved: false
         };
@@ -49,6 +51,8 @@ export default class App extends React.Component<Props, State> {
     let newPixels:PixelStatus[][] = [...this.state.pixels]
     changedPixels.forEach((pixelValue:PixelValue) => {
       newPixels[pixelValue.y][pixelValue.x] = {
+        x: pixelValue.x,
+        y: pixelValue.y,
         color: pixelValue.color,
         unsaved: false
       };
