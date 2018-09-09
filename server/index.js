@@ -12,7 +12,6 @@ app.get('*', function(request, response) {
 
 const httpServer = http.createServer(app)
 
-/*
 const wss = new WebSocket.Server({
     'server': httpServer
 })
@@ -38,6 +37,5 @@ wss.on('connection', function connection(ws) {
     });
   });
 });
-*/
 
 httpServer.listen(port)
