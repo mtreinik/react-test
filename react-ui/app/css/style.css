@@ -9,7 +9,7 @@ body {
 }
 .tool-palette {
   display: flex;
-  flex-grow: 1;
+  flex-grow: 0;
 }
 .sync-tool {
   flex-grow: 0;
