@@ -15,5 +15,5 @@ Deploying to Heroku
 ---
 - heroku login
 - heroku create
-- <update webSocketUrl>
+- (update webSocketUrl)
 - git push heroku master
