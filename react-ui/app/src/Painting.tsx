@@ -5,24 +5,15 @@ import { COLORS } from './ToolPalette';
 import { PixelStatus } from './App';
 
 interface Props {
-  onChange: (pixels:PixelStatus[][]) => void,
   width: number,
   height: number,
   penColor: string,
-  pixels: PixelStatus[][]
+  pixels: PixelStatus[][],
+  onChange: (newPixels:PixelStatus[][]) => void
 }
 
 interface State {
   mouseDown: boolean
-}
-
-function numberToHex(num:number): string {
-    const hex = num.toString(16);
-    return hex.length < 2 ? '0' + hex : hex;
-}
-
-function rgbToHex(red:number, green:number, blue:number): string {
-    return '#' + numberToHex(red) + numberToHex(green) + numberToHex(blue);
 }
 
 export default class Painting extends React.Component<Props, State> {
