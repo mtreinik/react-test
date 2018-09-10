@@ -3,7 +3,7 @@ import * as React from 'react';
 interface Props {
   color: string,
   penColor: string,
-  onChange: (penColor: string) => void
+  onChange: (newPenColor: string) => void
 }
 
 export default class ColorSelector extends React.Component<Props> {
@@ -12,7 +12,7 @@ export default class ColorSelector extends React.Component<Props> {
       super(props);
     }
 
-    onClick = () => {
+    handleClick = () => {
       this.props.onChange(this.props.color);
     }
 
@@ -25,7 +25,7 @@ export default class ColorSelector extends React.Component<Props> {
       };
       return (
         <div className="color-selector"
-          onClick = { this.onClick }
+          onClick = { this.handleClick }
           style={ style } />
       );
     }
