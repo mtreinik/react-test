@@ -5,7 +5,7 @@ Example application that uses the following web app development techniques:
 
 Installing
 ---
-npm Install
+npm install
 
 Building
 ---
@@ -16,4 +16,4 @@ Deploying to Heroku
 heroku login
 heroku create
 <update webSocketUrl>
-git push heroku heroku-react-node:master
+git push heroku master
