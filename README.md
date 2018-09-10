@@ -13,7 +13,7 @@ npm run build
 
 Deploying to Heroku
 ---
-heroku login
-heroku create
-<update webSocketUrl>
-git push heroku master
+- heroku login
+- heroku create
+- <update webSocketUrl>
+- git push heroku master
