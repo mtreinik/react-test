@@ -6,6 +6,8 @@ WePaint is a simple painting application that uses a [WebSocket](https://develop
 
 The UI is made with [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/).
 
+[Structure of the React components](docs/react-components.png)
+
 The WebSocket server is made in JavaScript with [express.js](https://expressjs.com/) and uses the [ws WebSocket library](https://github.com/websockets/ws).
 
 ## WebSocket API
