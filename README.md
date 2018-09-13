@@ -1,4 +1,4 @@
-# React test: WePaint - a simple collaborative painting app
+# WePaint - a simple collaborative painting app
 
 WePaint is a simple painting application that uses a [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) server to share paint strokes between users. It was created as an experiment on current web application development techniques.
 
